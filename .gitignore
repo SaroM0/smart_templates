@@ -6,3 +6,4 @@ __pycache__/
 
 # Config file with API key
 config.pyconfig.py
+config.py
