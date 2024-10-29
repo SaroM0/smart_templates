@@ -5,4 +5,4 @@ __pycache__/
 .env
 
 # Config file with API key
-config.py
+config.pyconfig.py
