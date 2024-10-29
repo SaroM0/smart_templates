@@ -1,0 +1,6 @@
+openai
+pydantic
+networkx
+scikit-learn
+numpy
+matplotlib
