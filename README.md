@@ -1,75 +1,88 @@
+
 # Smart Templates Application
 
-Esta aplicación está diseñada para detectar similitudes en consultas hechas por usuarios y sugerir plantillas estructuradas cuando se identifica un grupo de consultas relacionadas. Utiliza la API de OpenAI para analizar las consultas y generar plantillas, y emplea un grafo para visualizar relaciones entre consultas similares.
+This application is a proof of concept for an intelligent algorithm designed to detect patterns in user behavior. It identifies similarities in user queries and suggests structured templates when a cluster of related queries is found. It leverages OpenAI's API for query analysis and template generation, and utilizes a graph to visualize relationships between similar queries.
 
-## Características Principales
+---
 
-- **Análisis de similitudes**: Evalúa la similitud entre consultas usando `cosine similarity`.
-- **Generación de plantillas**: Sugiere plantillas para grupos de consultas similares utilizando modelos de lenguaje de OpenAI.
-- **Visualización de relaciones**: Crea un grafo para visualizar consultas y conexiones basadas en similitudes.
+## Key Features
 
-## Requisitos
+- **Similarity Analysis**: Evaluates query similarity using `cosine similarity`.
+- **Template Generation**: Suggests templates for clusters of similar queries via OpenAI's language models.
+- **Relationship Visualization**: Creates a graph to display queries and connections based on similarity.
 
-- Python 3.10 o superior
-- Conexión a internet para acceder a la API de OpenAI
+---
 
-## Instalación
+## Requirements
 
-### 1. Clonar el Repositorio
+- Python 3.10 or higher
+- Internet connection to access OpenAI's API
+
+---
+
+## Installation
+
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/tu_usuario/smart_templates.git
+git clone https://github.com/your_user/smart_templates.git
 cd smart_templates
 ```
 
-### 2. Instalar Dependencias
+### 2. Install Dependencies
 
-Ejecuta el siguiente comando para instalar todas las dependencias necesarias:
+Run the following command to install all required dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configuración de la API de OpenAI
+### 3. OpenAI API Configuration
 
-En el archivo `config.py`, agrega tu clave de API de OpenAI:
+Add your OpenAI API key in the `config.py` file:
 
 ```python
 # config.py
 OPENAI_API_KEY = "your_openai_api_key"
 EMBEDDING_MODEL = "text-embedding-ada-002"
-SIMILARITY_THRESHOLD = 0.7                  # Ajusta según el nivel de similitud deseado
-TEMPLATE_TRIGGER = 5                        # Número de conexiones para sugerir una plantilla
+SIMILARITY_THRESHOLD = 0.7                  # Adjust based on desired similarity level
+TEMPLATE_TRIGGER = 5                        # Number of connections to trigger a template suggestion
 ```
 
-## Estructura del Proyecto
+---
 
-- **`main.py`**: Archivo principal que ejecuta la aplicación.
-- **`config.py`**: Configuración de claves API y parámetros.
-- **`models.py`**: Define el modelo `TemplateSuggestion` para la structured output de OpenAI.
-- **`embeddings.py`**: Genera embeddings para cada consulta usando la API de OpenAI.
-- **`graph_manager.py`**: Añade consultas al grafo y calcula similitudes entre ellas.
-- **`visualization.py`**: Visualiza el grafo de consultas.
-- **`queries.py`**: Lista de consultas para los tests.
+## Project Structure
 
-## Uso
+- **`main.py`**: Main script to run the application.
+- **`config.py`**: Configuration for API keys and parameters.
+- **`models.py`**: Defines the `TemplateSuggestion` model for OpenAI's structured output.
+- **`embeddings.py`**: Generates embeddings for each query using OpenAI's API.
+- **`graph_manager.py`**: Adds queries to the graph and calculates similarities between them.
+- **`visualization.py`**: Visualizes the query graph.
+- **`queries.py`**: Contains a list of test queries.
 
-### Ejecución
+---
 
-1. Navega al directorio del proyecto.
-2. Ejecuta el archivo principal:
+## Usage
+
+### Running the Application
+
+1. Navigate to the project directory.
+2. Run the main script:
 
 ```bash
 python main.py
 ```
 
-### Funcionalidad
+### Functionality
 
-La aplicación toma la lista de consultas de `queries.py`, genera un embedding para cada consulta y evalúa similitudes usando `cosine similarity`. Si se identifican conexiones suficientes con una consulta, se sugiere una plantilla usando la API de OpenAI.
+The application processes the list of queries in `queries.py`, generates embeddings for each query, and evaluates similarities using `cosine similarity`. When a sufficient number of connections are detected for a query, it triggers a template suggestion through OpenAI's API.
 
-### Ejemplo de Salida
+---
 
-La salida muestra el progreso y la sugerencia de plantilla:
+### Example Output
+
+The output displays progress and template suggestions:
 
 ```
 Suggestion: Create a template for queries similar to 'Teach me how to make pasta'. Related queries: How to make pasta?, I want to make pasta, ...
@@ -77,23 +90,27 @@ Suggested template:
  template_name='Recipe Template' description='Template for cooking recipes.' variables=['ingredients', 'time', 'difficulty']
 ```
 
-### Visualización del Grafo
+---
 
-La aplicación dibuja un grafo de consultas relacionadas. Los nodos representan consultas, y las aristas indican similitud basada en el umbral definido en `config.py`.
+### Graph Visualization
 
-## Personalización
+The application generates a graph of related queries. Nodes represent queries, and edges indicate similarity based on the threshold defined in `config.py`.
 
-### Modificar el Umbral de Similitud
+---
 
-El umbral de similitud en `config.py` determina cuándo dos consultas son consideradas similares:
+## Customization
+
+### Adjusting Similarity Threshold
+
+The similarity threshold in `config.py` determines when two queries are considered similar:
 
 ```python
-SIMILARITY_THRESHOLD = 0.7  # Aumenta o disminuye para ajustar el nivel de similitud
+SIMILARITY_THRESHOLD = 0.7  # Increase or decrease to fine-tune similarity detection
 ```
 
-### Cambiar el Modelo de Embedding
+### Changing the Embedding Model
 
-En `config.py`, puedes especificar el modelo de embeddings de OpenAI:
+In `config.py`, you can specify the OpenAI embedding model:
 
 ```python
 EMBEDDING_MODEL = "text-embedding-ada-002"
